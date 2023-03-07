@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_grocery/data/model/response/product_model.dart';
 import 'package:flutter_grocery/helper/price_converter.dart';
@@ -18,112 +17,140 @@ class WebProductInformation extends StatelessWidget {
   final Product product;
   final int stock;
   final int cartIndex;
-  final  double priceWithQuantity;
-  WebProductInformation({@required this.product, @required this.stock, @required this.cartIndex, @required this.priceWithQuantity});
+  final double priceWithQuantity;
+  WebProductInformation(
+      {@required this.product,
+      @required this.stock,
+      @required this.cartIndex,
+      @required this.priceWithQuantity});
 
   @override
   Widget build(BuildContext context) {
-
     double _startingPrice;
     double _endingPrice;
-    if(product.variations.length != 0) {
+    if (product.variations.length != 0) {
       List<double> _priceList = [];
-      product.variations.forEach((variation) => _priceList.add(variation.price));
+      product.variations
+          .forEach((variation) => _priceList.add(variation.price));
       _priceList.sort((a, b) => a.compareTo(b));
       _startingPrice = _priceList[0];
-      if(_priceList[0] < _priceList[_priceList.length-1]) {
-        _endingPrice = _priceList[_priceList.length-1];
+      if (_priceList[0] < _priceList[_priceList.length - 1]) {
+        _endingPrice = _priceList[_priceList.length - 1];
       }
-    }else {
+    } else {
       _startingPrice = product.price;
     }
 
-
     return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Flexible(
-            child: Text(
-              product.name ?? '',
-              style: poppinsBold.copyWith(fontSize: Dimensions.FONT_SIZE_MAX_LARGE, color: ColorResources.getProductDescriptionColor(context)),
-              maxLines: 2,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Text(
+                  product.name ?? '',
+                  style: poppinsBold.copyWith(
+                      fontSize: Dimensions.FONT_SIZE_MAX_LARGE,
+                      color:
+                          ColorResources.getProductDescriptionColor(context)),
+                  maxLines: 2,
+                ),
+              ),
+              WishButton(product: product),
+            ],
           ),
+          SizedBox(height: 5),
 
-          WishButton(product: product),
-        ],
-      ),
-     SizedBox(height: 5),
+          // //rating hide
+          //    product.rating != null ? RatingBar(
+          //      rating: product.rating.length > 0 ? double.parse(product.rating[0].average) : 0.0,
+          //      size: Dimensions.PADDING_SIZE_DEFAULT,
+          //    ) : SizedBox(),
 
-     product.rating != null ? RatingBar(
-       rating: product.rating.length > 0 ? double.parse(product.rating[0].average) : 0.0,
-       size: Dimensions.PADDING_SIZE_DEFAULT,
-     ) : SizedBox(),
-
-      const SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-      Text(
-        '${product.capacity} ${product.unit}',
-        style: poppinsRegular.copyWith(color: Theme.of(context).hintColor, fontSize: Dimensions.FONT_SIZE_LARGE),
-      ),
-      const SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
-      //Product Price
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+          const SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
           Text(
-            '${PriceConverter.convertPrice(context, _startingPrice, discount: product.discount, discountType: product.discountType)}'
-                '${_endingPrice!= null ? ' - ${PriceConverter.convertPrice(context, _endingPrice, discount: product.discount, discountType: product.discountType)}' : ''}',
-            style: poppinsBold.copyWith(color: Theme.of(context).primaryColor, fontSize: Dimensions.FONT_SIZE_OVER_LARGE),
+            '${product.capacity} ${product.unit}',
+            style: poppinsRegular.copyWith(
+                color: Theme.of(context).hintColor,
+                fontSize: Dimensions.FONT_SIZE_LARGE),
           ),
-          const SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
-          product.discount > 0 ? Text(
-            '${PriceConverter.convertPrice(context, _startingPrice)}'
-                '${_endingPrice!= null ? ' - ${PriceConverter.convertPrice(context, _endingPrice)}' : ''}',
-            style: poppinsRegular.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.RED_COLOR,decoration: TextDecoration.lineThrough),
-          ): SizedBox(),
-        ],
-      ),
+          const SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
+          //Product Price
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                '${PriceConverter.convertPrice(context, _startingPrice, discount: product.discount, discountType: product.discountType)}'
+                '${_endingPrice != null ? ' - ${PriceConverter.convertPrice(context, _endingPrice, discount: product.discount, discountType: product.discountType)}' : ''}',
+                style: poppinsBold.copyWith(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: Dimensions.FONT_SIZE_OVER_LARGE),
+              ),
+              const SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+              product.discount > 0
+                  ? Text(
+                      '${PriceConverter.convertPrice(context, _startingPrice)}'
+                      '${_endingPrice != null ? ' - ${PriceConverter.convertPrice(context, _endingPrice)}' : ''}',
+                      style: poppinsRegular.copyWith(
+                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                          color: ColorResources.RED_COLOR,
+                          decoration: TextDecoration.lineThrough),
+                    )
+                  : SizedBox(),
+            ],
+          ),
 
-      VariationView(product: product),
+          VariationView(product: product),
 
+          const SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
 
-      const SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+          const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
 
-      const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE ),
+          Builder(builder: (context) {
+            return Row(children: [
+              QuantityButton(
+                  isIncrement: false,
+                  quantity: Provider.of<ProductProvider>(context, listen: false)
+                      .quantity,
+                  stock: stock,
+                  cartIndex: cartIndex),
+              SizedBox(width: 30),
+              Consumer<ProductProvider>(builder: (context, product, child) {
+                return Consumer<CartProvider>(builder: (context, cart, child) {
+                  return Text(
+                      cartIndex != null
+                          ? cart.cartList[cartIndex].quantity.toString()
+                          : product.quantity.toString(),
+                      style: poppinsSemiBold);
+                });
+              }),
+              SizedBox(width: 30),
+              QuantityButton(
+                  isIncrement: true,
+                  quantity: Provider.of<ProductProvider>(context, listen: false)
+                      .quantity,
+                  stock: stock,
+                  cartIndex: cartIndex),
+            ]);
+          }),
 
-      Builder(
-        builder: (context) {
-          return Row(children: [
-            QuantityButton(isIncrement: false, quantity: Provider.of<ProductProvider>(context, listen: false).quantity, stock: stock, cartIndex: cartIndex),
-            SizedBox(width: 30),
-            Consumer<ProductProvider>(builder: (context, product, child) {
-              return Consumer<CartProvider>(builder: (context, cart, child) {
-                return Text(cartIndex != null ? cart.cartList[cartIndex].quantity.toString() : product.quantity.toString(), style: poppinsSemiBold);
-              });
-            }),
-            SizedBox(width: 30),
-            QuantityButton(isIncrement: true, quantity: Provider.of<ProductProvider>(context, listen: false).quantity, stock: stock, cartIndex: cartIndex),
-          ]);
-        }
-      ),
-
-      const SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+          const SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
           Row(children: [
-            Text('${getTranslated('total_amount', context)}:', style: poppinsMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+            Text('${getTranslated('total_amount', context)}:',
+                style: poppinsMedium.copyWith(
+                    fontSize: Dimensions.FONT_SIZE_LARGE)),
             SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-            Text(PriceConverter.convertPrice(context, priceWithQuantity), style: poppinsBold.copyWith(
-              color: Theme.of(context).primaryColor, fontSize: Dimensions.FONT_SIZE_LARGE,
-            )),
+            Text(PriceConverter.convertPrice(context, priceWithQuantity),
+                style: poppinsBold.copyWith(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: Dimensions.FONT_SIZE_LARGE,
+                )),
           ]),
           SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-
-
-    ]);
+        ]);
   }
 }
 
@@ -145,45 +172,65 @@ class QuantityButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if(cartIndex != null) {
-          if(isIncrement) {
-            if (Provider.of<CartProvider>(context, listen: false).cartList[cartIndex].quantity < Provider.of<CartProvider>(context, listen: false).cartList[cartIndex].stock) {
-              Provider.of<CartProvider>(context, listen: false).setQuantity(true, cartIndex, showMessage: true, context: context);
+        if (cartIndex != null) {
+          if (isIncrement) {
+            if (Provider.of<CartProvider>(context, listen: false)
+                    .cartList[cartIndex]
+                    .quantity <
+                Provider.of<CartProvider>(context, listen: false)
+                    .cartList[cartIndex]
+                    .stock) {
+              Provider.of<CartProvider>(context, listen: false).setQuantity(
+                  true, cartIndex,
+                  showMessage: true, context: context);
             } else {
-              showCustomSnackBar(getTranslated('out_of_stock', context), context);
+              showCustomSnackBar(
+                  getTranslated('out_of_stock', context), context);
             }
-          }else {
-            if (Provider.of<CartProvider>(context, listen: false).cartList[cartIndex].quantity > 1) {
-              Provider.of<CartProvider>(context, listen: false).setQuantity(false, cartIndex, showMessage: true, context: context);
+          } else {
+            if (Provider.of<CartProvider>(context, listen: false)
+                    .cartList[cartIndex]
+                    .quantity >
+                1) {
+              Provider.of<CartProvider>(context, listen: false).setQuantity(
+                  false, cartIndex,
+                  showMessage: true, context: context);
             } else {
-              Provider.of<ProductProvider>(context, listen: false).setExistData(null);
-              Provider.of<CartProvider>(context, listen: false).removeFromCart(cartIndex, context);
+              Provider.of<ProductProvider>(context, listen: false)
+                  .setExistData(null);
+              Provider.of<CartProvider>(context, listen: false)
+                  .removeFromCart(cartIndex, context);
             }
           }
-        }else {
+        } else {
           if (!isIncrement && quantity > 1) {
-            Provider.of<ProductProvider>(context, listen: false).setQuantity(false);
+            Provider.of<ProductProvider>(context, listen: false)
+                .setQuantity(false);
           } else if (isIncrement) {
-            if(quantity < stock) {
-              Provider.of<ProductProvider>(context, listen: false).setQuantity(true);
-            }else {
-              showCustomSnackBar(getTranslated('out_of_stock', context), context);
+            if (quantity < stock) {
+              Provider.of<ProductProvider>(context, listen: false)
+                  .setQuantity(true);
+            } else {
+              showCustomSnackBar(
+                  getTranslated('out_of_stock', context), context);
             }
           }
         }
       },
       child: Container(
         // padding: EdgeInsets.all(3),
-        height: 50,width: 50,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Theme.of(context).primaryColor),
+        height: 50, width: 50,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Theme.of(context).primaryColor),
         child: Center(
           child: Icon(
             isIncrement ? Icons.add : Icons.remove,
             color: isIncrement
                 ? ColorResources.getWhiteColor(context)
                 : quantity > 1
-                ? ColorResources.getWhiteColor(context)
-                : ColorResources.getWhiteColor(context),
+                    ? ColorResources.getWhiteColor(context)
+                    : ColorResources.getWhiteColor(context),
             size: isCartWidget ? 26 : 20,
           ),
         ),
