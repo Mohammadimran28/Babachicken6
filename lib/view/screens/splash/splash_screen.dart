@@ -154,13 +154,29 @@ class _SplashScreenState extends State<SplashScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Image.asset(Images.app_logo, height: 130),
-          SizedBox(height: 30),
+          SizedBox(height: 10),
           Text(AppConstants.APP_NAME,
               textAlign: TextAlign.center,
               style: poppinsMedium.copyWith(
                 color: Theme.of(context).primaryColor,
-                fontSize: 35,
+                fontSize: 30,
               )),
+          Container(
+            // color: Colors.grey[300],
+            padding: EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Made with ❤️ in India',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

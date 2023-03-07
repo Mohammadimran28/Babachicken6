@@ -156,8 +156,8 @@ class ProductWidget extends StatelessWidget {
                         ),
                         child: Row(children: [
                           Container(
-                            height: 75,
-                            width: 85,
+                            height: 85,
+                            width: 110,
                             decoration: BoxDecoration(
                               border: Border.all(
                                   width: 2,
