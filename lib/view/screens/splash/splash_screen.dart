@@ -150,17 +150,25 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       key: _globalKey,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment
+            .spaceBetween, // set vertical space between children
         children: [
-          Image.asset(Images.app_logo, height: 130),
-          SizedBox(height: 10),
-          Text(AppConstants.APP_NAME,
-              textAlign: TextAlign.center,
-              style: poppinsMedium.copyWith(
-                color: Theme.of(context).primaryColor,
-                fontSize: 30,
-              )),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Image.asset(Images.app_logo, height: 130),
+                SizedBox(height: 40),
+                Text(AppConstants.APP_NAME,
+                    textAlign: TextAlign.center,
+                    style: poppinsMedium.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 30,
+                    )),
+              ],
+            ),
+          ),
           Container(
             // color: Colors.grey[300],
             padding: EdgeInsets.all(16),
