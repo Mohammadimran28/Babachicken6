@@ -34,7 +34,7 @@
         android:label="Baba Chicken">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_MAP_KEY" />
+            android:value="AIzaSyBHJxzPHD_egYnhxntqcvfem35YRjruzAg"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

@@ -31,10 +31,11 @@ class Images {
   static const String profile = 'assets/image/profile.png';
   static const String notification = 'assets/image/notification.png';
   static const String shopping_cart_bold = 'assets/image/cart_bold.png';
-  static const String terms_and_conditions = 'assets/image/terms_and_conditions.png';
+  static const String terms_and_conditions =
+      'assets/image/terms_and_conditions.png';
   static const String login = 'assets/image/login.png';
   static const String close = 'assets/image/clear.png';
-  static const String arabic_flag = 'assets/image/arabic.png';
+  static const String arabic_flag = 'assets/image/india.png';
   static const String support = 'assets/image/support.png';
   static const String profile_placeholder = 'assets/image/pro_place_holder.png';
   static const String google = 'assets/image/google.png';
@@ -48,7 +49,8 @@ class Images {
   static const String on_boarding_3 = 'assets/image/on_boarding_3.png';
   static const String close_lock = 'assets/image/close_lock.png';
   static const String open_lock = 'assets/image/open_lock.png';
-  static const String email_with_background = 'assets/image/email_with_background.png';
+  static const String email_with_background =
+      'assets/image/email_with_background.png';
   static const String cart_icon = 'assets/image/cart.png';
   static const String coupon_bg = 'assets/image/coupon_bg.png';
   static const String percentage = 'assets/image/percentage.png';
@@ -57,16 +59,22 @@ class Images {
   static const String placeholder_light = 'assets/image/placeholder.jpg';
   static const String placeholder_dark = 'assets/image/placeholder.jpeg';
   static String placeholder(BuildContext context) {
-    return Provider.of<ThemeProvider>(context).darkTheme ? placeholder_light : placeholder_light;
+    return Provider.of<ThemeProvider>(context).darkTheme
+        ? placeholder_light
+        : placeholder_light;
   }
+
   static const String update = 'assets/image/update.png';
 
   static const String camera = 'assets/image/camera.png';
   static const String map_marker = 'assets/image/marker.png';
   static const String restaurant_marker = 'assets/image/restaurant_marker.png';
-  static const String delivery_boy_marker = 'assets/image/delivery_boy_marker.png';
-  static const String destination_marker = 'assets/image/destination_marker.png';
-  static const String unselected_restaurant_marker = 'assets/image/unselected_restaurant_marker.png';
+  static const String delivery_boy_marker =
+      'assets/image/delivery_boy_marker.png';
+  static const String destination_marker =
+      'assets/image/destination_marker.png';
+  static const String unselected_restaurant_marker =
+      'assets/image/unselected_restaurant_marker.png';
   static const String wallet = 'assets/image/wallet.png';
   static const String facebook = 'assets/image/facebook.png';
   static const String twitter = 'assets/image/twitter.png';
@@ -78,5 +86,4 @@ class Images {
   static const String linked_in_icon = 'assets/image/linkedin_icon.png';
   static const String in_sta_gram_icon = 'assets/image/instagram_icon.png';
   static const String pinterest = 'assets/image/pinterest.png';
-
 }

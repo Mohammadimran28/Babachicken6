@@ -98,8 +98,8 @@ class AppConstants {
         languageCode: 'en'),
     LanguageModel(
         imageUrl: Images.arabic_flag,
-        languageName: 'العربية',
+        languageName: 'Hindi',
         countryCode: 'SA',
-        languageCode: 'ar'),
+        languageCode: 'hi'),
   ];
 }
