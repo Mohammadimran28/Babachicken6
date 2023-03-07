@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">YOUR_APP_NAME</string>
-    <string name="facebook_app_id">YOUR_FACEBOOK_APP_ID</string>
-    <string name="fb_login_protocol_scheme">YOUR_SCHEME</string>
-    <string name="facebook_client_token">YOUR_FACEBOOK_CLIENT_TOKEN</string>
+    <string name="app_name">babachicken</string>
+    <string name="facebook_app_id">1429764927760559</string>
+    <string name="fb_login_protocol_scheme">fb1429764927760559</string>
+    <string name="facebook_client_token">21164203ab538059258adf13e079c8af</string>
 </resources>

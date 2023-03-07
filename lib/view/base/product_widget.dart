@@ -156,7 +156,7 @@ class ProductWidget extends StatelessWidget {
                         ),
                         child: Row(children: [
                           Container(
-                            height: 85,
+                            height: 75,
                             width: 85,
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -427,7 +427,7 @@ class ProductWidget extends StatelessWidget {
             Column(
               children: [
                 Expanded(
-                  flex: _width < 425 ? 4 : 6,
+                  flex: _width < 425 ? 6 : 6,
                   child: Stack(
                     children: [
                       oneSideShadow,
@@ -468,9 +468,9 @@ class ProductWidget extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: _width < 425 ? 6 : 4,
+                  flex: _width < 425 ? 6 : 6,
                   child: Container(
-                    //padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -526,16 +526,48 @@ class ProductWidget extends StatelessWidget {
                               )
                             : SizedBox(),
 
+                        // const SizedBox(
+                        //     width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        // SizedBox(
+                        //   height: 16,
+                        //   width: 16,
+                        //   child: Image.asset(Images.shopping_cart_bold),
+                        // ),
+
                         // Column(
                         //   mainAxisAlignment: MainAxisAlignment.center,
                         //   children: [
                         //
                         //   ],
                         // ),
+
+                        // Column(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: [
+                        //     Container(
+                        //       padding: EdgeInsets.all(2),
+                        //       margin: EdgeInsets.all(2),
+                        //       alignment: Alignment.center,
+                        //       decoration: BoxDecoration(
+                        //         border: Border.all(
+                        //           width: 1,
+                        //           color: ColorResources.getHintColor(context)
+                        //               .withOpacity(0.2),
+                        //         ),
+                        //         borderRadius: BorderRadius.circular(10),
+                        //       ),
+                        //       child: Icon(
+                        //         Icons.add,
+                        //         color: Theme.of(context).primaryColor,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+
                         const SizedBox(
                             height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
 
-                        if (productType == ProductType.LATEST_PRODUCT)
+                        if (productType == ProductType.DAILY_ITEM)
                           Column(
                             children: [
                               !isExistInCart
