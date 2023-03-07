@@ -119,7 +119,7 @@ class _ProductViewState extends State<ProductView> {
                               : ResponsiveHelper.isTab(context)
                                   ? 2
                                   : 1),
-                      itemCount: 6,
+                      itemCount: 5,
                       padding: EdgeInsets.symmetric(
                           horizontal: Dimensions.PADDING_SIZE_SMALL,
                           vertical: Dimensions.PADDING_SIZE_LARGE),
