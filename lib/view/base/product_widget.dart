@@ -427,7 +427,7 @@ class ProductWidget extends StatelessWidget {
             Column(
               children: [
                 Expanded(
-                  flex: _width < 425 ? 6 : 6,
+                  flex: _width < 425 ? 6 : 4,
                   child: Stack(
                     children: [
                       oneSideShadow,
@@ -468,9 +468,9 @@ class ProductWidget extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: _width < 425 ? 6 : 6,
+                  flex: _width < 425 ? 6 : 4,
                   child: Container(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -503,7 +503,7 @@ class ProductWidget extends StatelessWidget {
                           '${product.capacity} ${product.unit}',
                           style: poppinsRegular.copyWith(
                               fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL),
-                          maxLines: 2,
+                          maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
 

@@ -14,86 +14,91 @@ class HomeItemView extends StatelessWidget {
   const HomeItemView({Key key, this.isDailyItem}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProductProvider>(builder: (context, productProvider, child) {
+    return Consumer<ProductProvider>(
+        builder: (context, productProvider, child) {
       List<Product> _productList = [];
-      if(isDailyItem) {
+      if (isDailyItem) {
         _productList = productProvider.dailyItemList;
-      }else{
+      } else {
         _productList = productProvider.popularProductList;
       }
 
-      return _productList != null ? Column(children: [
-
-        ResponsiveHelper.isDesktop(context) ? GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio:  (1 / 1.3),
-            crossAxisCount: 5,
-            mainAxisSpacing: 13,
-            crossAxisSpacing: 13,
-          ),
-          itemCount: _productList.length >= 10 ? 10 : _productList.length,
-          padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL,vertical: Dimensions.PADDING_SIZE_LARGE),
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemBuilder: (context,index){
-            return ProductWidget(
-              isGrid: true,
-              product: _productList[index],
-              productType: ProductType.DAILY_ITEM,
-            );
-            },
-        ) :
-        SizedBox(
-          height: 290,
-          child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
-            itemCount: _productList.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Container(
-                width: 195,
-                padding: EdgeInsets.all(5),
-                child: ProductWidget(
-                  isGrid: true,
-                  product: _productList[index],
-                  productType: ProductType.DAILY_ITEM,
-                ),
-              );
-              },
-          ),
-        ),
-
-      ]) : ResponsiveHelper.isDesktop(context) ?
-      GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio:  (1 / 1.3),
-          crossAxisCount: 5,
-          mainAxisSpacing: 13,
-          crossAxisSpacing: 13,
-        ),
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: 10,
-        itemBuilder: (context, index) => WebProductShimmer(isEnabled: true),
-      ) :
-      SizedBox(
-        height: 250,
-        child: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
-          itemCount: 10,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return Container(
-              width: 195,
-              padding: EdgeInsets.all(5),
-              child: WebProductShimmer(isEnabled: true),
-            );
-          },
-        ),
-      );
+      return _productList != null
+          ? Column(children: [
+              ResponsiveHelper.isDesktop(context)
+                  ? GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: (1 / 1.3),
+                        crossAxisCount: 5,
+                        mainAxisSpacing: 13,
+                        crossAxisSpacing: 13,
+                      ),
+                      itemCount:
+                          _productList.length >= 10 ? 10 : _productList.length,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: Dimensions.PADDING_SIZE_SMALL,
+                          vertical: Dimensions.PADDING_SIZE_LARGE),
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return ProductWidget(
+                          isGrid: true,
+                          product: _productList[index],
+                          productType: ProductType.DAILY_ITEM,
+                        );
+                      },
+                    )
+                  : SizedBox(
+                      height: 290,
+                      child: ListView.builder(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: Dimensions.PADDING_SIZE_SMALL),
+                        itemCount: _productList.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            width: 195,
+                            padding: EdgeInsets.all(5),
+                            child: ProductWidget(
+                              isGrid: true,
+                              product: _productList[index],
+                              productType: ProductType.DAILY_ITEM,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+            ])
+          : ResponsiveHelper.isDesktop(context)
+              ? GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: (1 / 1.3),
+                    crossAxisCount: 5,
+                    mainAxisSpacing: 13,
+                    crossAxisSpacing: 13,
+                  ),
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 10,
+                  itemBuilder: (context, index) =>
+                      WebProductShimmer(isEnabled: true),
+                )
+              : SizedBox(
+                  height: 250,
+                  child: ListView.builder(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Dimensions.PADDING_SIZE_SMALL),
+                    itemCount: 10,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 195,
+                        padding: EdgeInsets.all(5),
+                        child: WebProductShimmer(isEnabled: true),
+                      );
+                    },
+                  ),
+                );
     });
   }
 }
-
-
-
