@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_grocery/data/model/response/address_model.dart';
 import 'package:flutter_grocery/helper/responsive_helper.dart';
@@ -32,7 +31,8 @@ class DetailsView extends StatelessWidget {
     @required this.locationProvider,
     @required this.contactPersonNameController,
     @required this.contactPersonNumberController,
-    @required this.addressNode, @required this.nameNode,
+    @required this.addressNode,
+    @required this.nameNode,
     @required this.numberNode,
     @required this.isEnableUpdate,
     @required this.fromCheckout,
@@ -48,21 +48,24 @@ class DetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    locationTextController.text = locationProvider.address;
-
     return Container(
-      decoration: ResponsiveHelper.isDesktop(context) ?  BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: ColorResources.CARD_SHADOW_COLOR.withOpacity(0.2),
-              blurRadius: 10,
-            )
-          ]
-      ) : BoxDecoration(),
+      decoration: ResponsiveHelper.isDesktop(context)
+          ? BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                  BoxShadow(
+                    color: ColorResources.CARD_SHADOW_COLOR.withOpacity(0.2),
+                    blurRadius: 10,
+                  )
+                ])
+          : BoxDecoration(),
       //margin: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL,vertical: Dimensions.PADDING_SIZE_LARGE),
-      padding: ResponsiveHelper.isDesktop(context) ?  EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_LARGE) : EdgeInsets.zero,
+      padding: ResponsiveHelper.isDesktop(context)
+          ? EdgeInsets.symmetric(
+              horizontal: Dimensions.PADDING_SIZE_LARGE,
+              vertical: Dimensions.PADDING_SIZE_LARGE)
+          : EdgeInsets.zero,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,14 +73,16 @@ class DetailsView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 24.0),
             child: Text(
               getTranslated('delivery_address', context),
-              style:
-              Theme.of(context).textTheme.headline3.copyWith(color: ColorResources.getHintColor(context), fontSize: Dimensions.FONT_SIZE_LARGE),
+              style: Theme.of(context).textTheme.headline3.copyWith(
+                  color: ColorResources.getHintColor(context),
+                  fontSize: Dimensions.FONT_SIZE_LARGE),
             ),
           ),
           // for Address Field
           Text(
             getTranslated('address_line_01', context),
-            style: poppinsRegular.copyWith(color: ColorResources.getHintColor(context)),
+            style: poppinsRegular.copyWith(
+                color: ColorResources.getHintColor(context)),
           ),
           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
@@ -88,13 +93,14 @@ class DetailsView extends StatelessWidget {
             inputAction: TextInputAction.next,
             focusNode: addressNode,
             nextFocus: stateNode,
-            controller: locationTextController ??'',
+            controller: locationTextController ?? '',
           ),
           SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
           Text(
             '${getTranslated('street', context)} ${getTranslated('number', context)}',
-            style: poppinsRegular.copyWith(color: ColorResources.getHintColor(context)),
+            style: poppinsRegular.copyWith(
+                color: ColorResources.getHintColor(context)),
           ),
           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
 
@@ -105,51 +111,50 @@ class DetailsView extends StatelessWidget {
             inputAction: TextInputAction.next,
             focusNode: stateNode,
             nextFocus: houseNode,
-            controller: streetNumberController ??'',
+            controller: streetNumberController ?? '',
           ),
           SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
           Text(
-            '${getTranslated('house', context)} / ${
-                getTranslated('floor', context)} ${
-                getTranslated('number', context)}',
-            style: poppinsRegular.copyWith(color: ColorResources.getHintColor(context)),
+            '${getTranslated('house', context)} / ${getTranslated('floor', context)} ${getTranslated('number', context)}',
+            style: poppinsRegular.copyWith(
+                color: ColorResources.getHintColor(context)),
           ),
           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-          Row(children: [
-            Expanded(
-              child: CustomTextField(
-                hintText: getTranslated('ex_2', context),
-                isShowBorder: true,
-                inputType: TextInputType.streetAddress,
-                inputAction: TextInputAction.next,
-                focusNode: houseNode,
-                nextFocus: florNode,
-                controller: houseNumberController ??'',
+          Row(
+            children: [
+              Expanded(
+                child: CustomTextField(
+                  hintText: getTranslated('ex_2', context),
+                  isShowBorder: true,
+                  inputType: TextInputType.streetAddress,
+                  inputAction: TextInputAction.next,
+                  focusNode: houseNode,
+                  nextFocus: florNode,
+                  controller: houseNumberController ?? '',
+                ),
               ),
-            ),
-
-            SizedBox(width: Dimensions.PADDING_SIZE_LARGE),
-
-            Expanded(
-              child: CustomTextField(
-                hintText: getTranslated('ex_2b', context),
-                isShowBorder: true,
-                inputType: TextInputType.streetAddress,
-                inputAction: TextInputAction.next,
-                focusNode: florNode,
-                nextFocus: nameNode,
-                controller: florNumberController ??'',
+              SizedBox(width: Dimensions.PADDING_SIZE_LARGE),
+              Expanded(
+                child: CustomTextField(
+                  hintText: getTranslated('ex_2b', context),
+                  isShowBorder: true,
+                  inputType: TextInputType.streetAddress,
+                  inputAction: TextInputAction.next,
+                  focusNode: florNode,
+                  nextFocus: nameNode,
+                  controller: florNumberController ?? '',
+                ),
               ),
-            ),
-
-          ],),
+            ],
+          ),
           SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
           // for Contact Person Name
           Text(
             getTranslated('contact_person_name', context),
-            style: poppinsRegular.copyWith(color: ColorResources.getHintColor(context)),
+            style: poppinsRegular.copyWith(
+                color: ColorResources.getHintColor(context)),
           ),
           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
           CustomTextField(
@@ -167,7 +172,8 @@ class DetailsView extends StatelessWidget {
           // for Contact Person Number
           Text(
             getTranslated('contact_person_number', context),
-            style: poppinsRegular.copyWith(color: ColorResources.getHintColor(context)),
+            style: poppinsRegular.copyWith(
+                color: ColorResources.getHintColor(context)),
           ),
           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
           CustomTextField(
@@ -180,21 +186,23 @@ class DetailsView extends StatelessWidget {
           ),
           SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-          if(ResponsiveHelper.isDesktop(context)) Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
-            child: ButtonsView(
-              locationProvider: locationProvider,
-              isEnableUpdate: isEnableUpdate,
-              fromCheckout: fromCheckout,
-              contactPersonNumberController: contactPersonNumberController,
-              contactPersonNameController: contactPersonNameController,
-              address: address,
-              location: locationTextController.text,
-              streetNumberController: streetNumberController,
-              houseNumberController: houseNumberController,
-              floorNumberController: florNumberController,
-            ),
-          )
+          if (ResponsiveHelper.isDesktop(context))
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: Dimensions.PADDING_SIZE_LARGE),
+              child: ButtonsView(
+                locationProvider: locationProvider,
+                isEnableUpdate: isEnableUpdate,
+                fromCheckout: fromCheckout,
+                contactPersonNumberController: contactPersonNumberController,
+                contactPersonNameController: contactPersonNameController,
+                address: address,
+                location: locationTextController.text,
+                streetNumberController: streetNumberController,
+                houseNumberController: houseNumberController,
+                floorNumberController: florNumberController,
+              ),
+            )
         ],
       ),
     );
